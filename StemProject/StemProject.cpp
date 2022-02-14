@@ -3,7 +3,7 @@ Authors: Joey Soroka, Eric Pace, Kian Darrington
 File Name: StemProject.cpp
 Pseudocode:
 Maintenance Log: 
-2/14/21: 
+2/14/21: Started Project
 */
 
 #include <iostream>
@@ -13,6 +13,6 @@ using namespace std;
 
 int main()
 {
-	
+
 }
 
