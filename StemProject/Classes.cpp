@@ -1,61 +1,91 @@
 #include "Classes.h"
 #include "Functions.h"
 
-const float fourStory = 1.73333333;
-const float fiveStory = 2;
-const float sixStory = 2.5;
-const float tenStory = 3;
-const float fifteenStory = 3.33333333;
-const float twentyStory = 3.5;
-const float thirtyStory = 3.88888889;
-const float fortyStory = 4.44444444;
-const float fiftyStory = 5;
+const float dMult;
 
-const int peopleToHos = 10;
-
-
+// CONSTRUCTORS 
 cityPlanner::cityPlanner()
 {
-	population_Density_ = 0;
-	cost_ = 0;
+	sqMiles_ = 0;
+	population_ = 0;
+	eMag_ = 0;
+	disaster_ = 0;
 }
 
+cityPlanner::cityPlanner(int pop, float a, float m, int d)
+{
+	population_ = pop;
+	sqMiles_ = a;
+	eMag_ = m;
+	disaster_ = d;
+}
+
+cityPlanner::cityPlanner(cityPlanner& c)
+{
+	population_ = c.population_;
+	sqMiles_ = c.sqMiles_;
+}
+//^^^^^^^
+
+
+
+
+// SETTERS
 void cityPlanner::setPop(int pop)
 {
 	population_ = pop;
 } 
 
-void cityPlanner::setAcres(float acres)
+void cityPlanner::setDisaster(int d)
 {
-	acres_ = acres;
+	disaster_ = d;
 }
 
+void cityPlanner::setEMag(float m)
+{
+	eMag_ = m;
+}
+
+void cityPlanner::setSqMiles(float m)
+{
+	sqMiles_ = m;
+}
+//^^^^^^^^^
+
+
+
+
+// GETTERS
 int cityPlanner::getPop()
 {
 	return population_;
 }
 
-float cityPlanner::getAcres()
+int cityPlanner::getDis()
 {
-	return acres_;
+	return disaster_;
 }
 
-float cityPlanner::getPopDensity()
+float cityPlanner::getEMag()
 {
-	return population_Density_;
+	return eMag_;
 }
 
-float cityPlanner::getCost()
+float cityPlanner::getSqMiles()
 {
-	return cost_;
+	return sqMiles_;
 }
+//^^^^^^
 
-void cityPlanner::calculatePopDensity()
+
+
+
+float cityPlanner::pop_Density(float acres, int pop)
 {
-	population_Density_ = atom(acres_) / population_;
+	return pD(pop, acres);
 }
 
 int cityPlanner::calculateCost()
 {
-	return cost_;
+	
 }
