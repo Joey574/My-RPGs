@@ -29,12 +29,18 @@ int main()
 {
 	cityPlanner c; // main class
 
+	vector<int> death;
+
 	string input;
 
 	int pop; // population
 
 	float sqmil; // sq miles
-	float acres; // acres
+	float mag; // earthquake magnitude
+
+	bool flood = false;
+	bool earth = false;
+	bool city;
 
 	char cInput; // char input
 
@@ -46,14 +52,16 @@ int main()
 		system("CLS");
 		printf("What is your disaster?\n1. Flood\n2. Earthquake\nInput: ");
 		cin >> input;
-		input = capitalize(input);
+
 		if (input == "FLOOD" || input == "1")
 		{
-
+			flood = true;
+			c.setDisaster(1);
 		}
 		else if (input == "EARTHQUAKE" || input == "2")
 		{
-
+			earth = true;
+			c.setDisaster(2);
 		}
 		else
 		{
@@ -66,28 +74,84 @@ int main()
 	
 	while (1)
 	{
-		cout << "Input Population: ";
-		cin >> pop;
-		
-		cout << "Input Square miles of affected land: ";
-		cin >> sqmil;
-
-		cout << "Is the above information corect (y/n): ";
-		cInput = _getche();
-		toupper(cInput);
 		system("CLS");
-
-		if (cInput == 'N')
+		cout << "1: City area\n2: Suburban/Rural area\nInput: ";
+		cin >> input;
+		if (input == "1")
 		{
+			c.setCity(true);
+			city = true;
+		}
+		else if (input == "2")
+		{
+			c.setCity(false);
+			city = false;
+		}
+		else
+		{
+			printf("Invalid input try again");
+			_getch();
 			continue;
 		}
 		break;
 	}
-	c.setPop(pop);
-	acres = mtoa(sqmil);
-	c.setAcres(acres);
+		cout << "Input Population: ";
+		cin >> pop;
+		c.setPop(pop);
+
+		cout << "Input Square miles of affected land: ";
+		cin >> sqmil;
+		c.setSqMiles(sqmil);
+
+		if (earth == true)
+		{
+			cout << "Enter magnitude of earthquake: ";
+			cin >> mag;
+			if (mag <= 3.9)
+			{
+				c.setEMag(0);
+			}
+			else if (mag > 3.9 && mag <= 4.9)
+			{
+				c.setEMag(1);
+			}
+			else if (mag > 4.9 && mag <= 6.0)
+			{
+				c.setEMag(2);
+			}
+			else if (mag > 6.0 && mag <= 6.9)
+			{
+				c.setEMag(3);
+			}
+			else if (mag > 6.9 && mag <= 7.9)
+			{
+				c.setEMag(4);
+			}
+			else if (mag >= 8.0)
+			{
+				c.setEMag(5);
+			}
+
+			if (mag >= 7.0)
+			{
+				cout << "Is the affected area within 30 miles of any major water sourece? (y/n): ";
+				cInput = _getche();
+				cInput = toupper(cInput);
+
+				if (cInput == 'Y')
+				{
+					c.setDisaster(3);
+				}
+			}
+		}
+		system("CLS");
+		death = c.death();
+		cout << "Number of body bags needed: " << death[0] << endl;
+		cout << "Number of boo-boo band aids needed: " << death[1] << endl;
+		cout << "Number of dead puppies: " << death[2] << endl;
+		cout << "Infrastructure damage: " << death[3] << "000" << endl;
 
 	
-	
+	return 0;
 }
 

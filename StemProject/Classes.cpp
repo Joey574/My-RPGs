@@ -1,7 +1,10 @@
 #include "Classes.h"
 #include "Functions.h"
 
-const float dMult;
+using namespace std;
+
+const int cityCost = 4000;
+const int subCost = 800;
 
 // CONSTRUCTORS 
 cityPlanner::cityPlanner()
@@ -50,6 +53,11 @@ void cityPlanner::setSqMiles(float m)
 {
 	sqMiles_ = m;
 }
+
+void cityPlanner::setCity(bool c)
+{
+	city = c;
+}
 //^^^^^^^^^
 
 
@@ -82,10 +90,139 @@ float cityPlanner::getSqMiles()
 
 float cityPlanner::pop_Density(float acres, int pop)
 {
-	return pD(pop, acres);
+	return pop / acres;
 }
 
-int cityPlanner::calculateCost()
+vector<int> cityPlanner::death() // 14% of original population worth of pets die
 {
-	
+	vector<int> death;
+
+	if (disaster_ == 1)
+	{
+		death.push_back(population_ * 0.002); // human death
+
+		death.push_back(population_ * 0.07); // pet death
+	}
+	else if (disaster_ == 2)
+	{
+		if (eMag_ == 0)
+		{
+			death.push_back(0);
+			death.push_back(0);
+			death.push_back(0);
+		}
+		else if (eMag_ == 1)
+		{
+			death.push_back(0);
+			death.push_back(0);
+			death.push_back(0);
+			if (city == true)
+			{
+				death.push_back((sqMiles_ * cityCost) * 0.20);
+			}
+			else
+			{
+				death.push_back((sqMiles_ * subCost) * 0.20);
+
+			}
+		}
+		else if (eMag_ == 2)
+		{
+			death.push_back(population_ * 0.0016);
+			death.push_back(population_ * 0.0022);
+			death.push_back(population_ * 0.14); // pet death
+			if (city == true)
+			{
+				death.push_back((sqMiles_ * cityCost) * 0.40);
+			}
+			else
+			{
+				death.push_back((sqMiles_ * subCost) * 0.40);
+
+			}
+		}
+		else if (eMag_ == 3)
+		{
+			death.push_back(population_ * 0.016);
+			death.push_back(population_ * 0.022);
+			death.push_back(population_ * 0.14); // pet death
+			if (city == true)
+			{
+				death.push_back((sqMiles_ * cityCost) * 0.60);
+			}
+			else
+			{
+				death.push_back((sqMiles_ * subCost) * 0.60);
+
+			}
+			
+		}
+		else if (eMag_ == 4)
+		{
+			death.push_back(population_ * 0.16);
+			death.push_back(population_ * 0.06);
+			death.push_back(population_ * 0.14); // pet death
+			if (city == true)
+			{
+				death.push_back((sqMiles_ * cityCost) * 0.70);
+			}
+			else
+			{
+				death.push_back((sqMiles_ * subCost) * 0.70);
+
+			}
+		}
+		else if (eMag_ == 5)
+		{
+			death.push_back(population_ * 0.35);
+			death.push_back(population_ * 0.08);
+			death.push_back(population_ * 0.14); // pet death
+			if (city == true)
+			{
+				death.push_back((sqMiles_ * cityCost) * 0.80);
+			}
+			else
+			{
+				death.push_back((sqMiles_ * subCost) * 0.80);
+
+			}
+		}
+		
+	}
+	else if (disaster_ == 3)
+	{
+		if (eMag_ == 4)
+		{
+			death.push_back(population_ * 0.20);
+			death.push_back(population_ * 0.08);
+			death.push_back(population_ * 0.18); // pet death
+			if (city == true)
+			{
+				death.push_back((sqMiles_ * cityCost) * 0.80);
+			}
+			else
+			{
+				death.push_back((sqMiles_ * subCost) * 0.80);
+
+			}
+		}
+		else if (eMag_ == 5)
+		{
+			death.push_back(population_ * 0.40);
+			death.push_back(population_ * 0.10);
+			death.push_back(population_ * 0.18); // pet death
+			if (city == true)
+			{
+				death.push_back((sqMiles_ * cityCost) * 0.90);
+			}
+			else
+			{
+				death.push_back((sqMiles_ * subCost) * 0.90);
+
+			}
+		}
+
+	}
+
+	return death;
 }
