@@ -46,32 +46,9 @@ int main()
 
 	printf("Welcome to our disaster relief planner...\n");
 	_getch();
-	
-	while (1)
-	{
-		system("CLS");
-		printf("What is your disaster?\n1. Flood\n2. Earthquake\nInput: ");
-		cin >> input;
-
-		if (input == "FLOOD" || input == "1")
-		{
-			flood = true;
-			c.setDisaster(1);
-		}
-		else if (input == "EARTHQUAKE" || input == "2")
-		{
-			earth = true;
-			c.setDisaster(2);
-		}
-		else
-		{
-			printf("Invalid input try again");
-			_getch();
-			continue;
-		}
-		break;
-	}
-	
+	earth = true;
+	c.setDisaster(2);
+		
 	while (1)
 	{
 		system("CLS");
@@ -150,8 +127,13 @@ int main()
 		cout << "Number of boo-boo band aids needed: " << death[1] << endl;
 		cout << "Number of dead puppies: " << death[2] << endl;
 		cout << "Infrastructure damage: " << death[3] << "000" << endl;
+		if (mag >= 7.0)
+		{
+			cout << "Search and rescue cose: " << death[4] << "0" << endl;
 
-	
+		}
+
+
 	return 0;
 }
 

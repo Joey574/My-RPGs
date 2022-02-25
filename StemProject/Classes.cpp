@@ -5,6 +5,10 @@ using namespace std;
 
 const int cityCost = 4000;
 const int subCost = 800;
+const int _3Cost = 600;
+const int _4Cost = 750;
+const int _5Cost = 900;
+
 
 // CONSTRUCTORS 
 cityPlanner::cityPlanner()
@@ -155,6 +159,7 @@ vector<int> cityPlanner::death() // 14% of original population worth of pets die
 				death.push_back((sqMiles_ * subCost) * 0.60);
 
 			}
+			death.push_back(sqMiles_ * _3Cost);
 			
 		}
 		else if (eMag_ == 4)
@@ -171,6 +176,8 @@ vector<int> cityPlanner::death() // 14% of original population worth of pets die
 				death.push_back((sqMiles_ * subCost) * 0.70);
 
 			}
+			death.push_back(sqMiles_ * _4Cost);
+
 		}
 		else if (eMag_ == 5)
 		{
@@ -186,6 +193,7 @@ vector<int> cityPlanner::death() // 14% of original population worth of pets die
 				death.push_back((sqMiles_ * subCost) * 0.80);
 
 			}
+			death.push_back(sqMiles_ * _5Cost);
 		}
 		
 	}
@@ -205,6 +213,8 @@ vector<int> cityPlanner::death() // 14% of original population worth of pets die
 				death.push_back((sqMiles_ * subCost) * 0.80);
 
 			}
+			death.push_back(sqMiles_* (_4Cost + 300));
+
 		}
 		else if (eMag_ == 5)
 		{
@@ -220,6 +230,7 @@ vector<int> cityPlanner::death() // 14% of original population worth of pets die
 				death.push_back((sqMiles_ * subCost) * 0.90);
 
 			}
+			death.push_back(sqMiles_* (_5Cost + 300));
 		}
 
 	}
