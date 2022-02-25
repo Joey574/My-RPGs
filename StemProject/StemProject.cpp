@@ -27,33 +27,67 @@ using namespace std;
 
 int main()
 {
-	cityPlanner c;
+	cityPlanner c; // main class
 
-	int istin; //integer state input
-	int pop;
+	string input;
 
-	float sqmil;
-	float acres;
+	int pop; // population
 
-	bool loop = true;
+	float sqmil; // sq miles
+	float acres; // acres
 
-	string sstin; //string state input
+	char cInput; // char input
 
 	printf("Welcome to our disaster relief planner...\n");
 	_getch();
-	system("CLS");
+	
+	while (1)
+	{
+		system("CLS");
+		printf("What is your disaster?\n1. Flood\n2. Earthquake\nInput: ");
+		cin >> input;
+		input = capitalize(input);
+		if (input == "FLOOD" || input == "1")
+		{
 
-	cout << "Input Population: ";
-	cin >> pop;
+		}
+		else if (input == "EARTHQUAKE" || input == "2")
+		{
 
-	cout << "Input Square miles of affected land: ";
-	cin >> sqmil;
+		}
+		else
+		{
+			printf("Invalid input try again");
+			_getch();
+			continue;
+		}
+		break;
+	}
+	
+	while (1)
+	{
+		cout << "Input Population: ";
+		cin >> pop;
+		
+		cout << "Input Square miles of affected land: ";
+		cin >> sqmil;
 
-	system("CLS");
+		cout << "Is the above information corect (y/n): ";
+		cInput = _getche();
+		toupper(cInput);
+		system("CLS");
+
+		if (cInput == 'N')
+		{
+			continue;
+		}
+		break;
+	}
 	c.setPop(pop);
 	acres = mtoa(sqmil);
 	c.setAcres(acres);
 
-
+	
+	
 }
 

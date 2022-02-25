@@ -4,22 +4,22 @@
 
 using namespace std;
 
-int atom(float acres)
+int atom(float acres) // acres to miles
 {
 	return acres / 640;
 }
 
-int mtoa(float sqmil)
+int mtoa(float sqmil) // miles to acres
 {
 	return sqmil * 640;
 }
 
-float popDensity(int pop, int acre)
+float pD(int pop, int acre) // pop density calculator
 {
 	return pop / acre;
 }
 
-string capitalize(string c)
+string capitalize(string c) // capitalizes string
 {
 	for (int i = 0; i < c.length(); i++)
 	{
@@ -28,7 +28,7 @@ string capitalize(string c)
 	return c;
 }
 
-string lowertarize(string l)
+string lowertarize(string l) // lowertarizes string
 {
 	for (int i = 0; i < l.length(); i++)
 	{
@@ -37,12 +37,12 @@ string lowertarize(string l)
 	return l;
 }
 
-float atof(int a)
+float atof(int a) // acres to feet
 {
 	return a * 43560;
 }
 
-float ftoa(int f)
+float ftoa(int f) // feet to acres
 {
 	return f / 43560;
 }
